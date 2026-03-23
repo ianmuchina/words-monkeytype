@@ -1,4 +1,4 @@
-name: update
+name: update stats
 
 on:
   schedule:
@@ -17,16 +17,21 @@ jobs:
         with:
           deno-version: lts
 
-      - name: Install deps
+      - name: install dependencies
         run: |
           sudo apt-get install -y wget2 jq
-          pip install duckdb-cli
+          pip install duckdb-cli huggingface_hub[cli]
 
-      - name: run
+      - name: update train.csv
         run: make train.csv
 
-      - name: stats
+      - name: update stats
         run: make inject-stats
+
+      - name: upload to huggingface
+        run: make upload-hf
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
       - name: commit
         run: make bot-commit && git push

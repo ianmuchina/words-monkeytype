@@ -2,6 +2,9 @@ REPO := monkeytypegame/monkeytype
 RAW  := https://raw.githubusercontent.com/$(REPO)/master
 API  := https://api.github.com/repos/$(REPO)/git/trees/master?recursive=1
 
+HF_REPO := much1na/words-monkeytype
+HF_URL  := https://huggingface.co/datasets/$(HF_REPO)
+
 all: train.csv
 
 tmp:
@@ -66,10 +69,13 @@ tmp/commit-msg: tmp/upstream-msg tmp/upstream-sha-short
 bot-commit: tmp/commit-msg
 	git config user.name "github-actions[bot]"
 	git config user.email "github-actions[bot]@users.noreply.github.com"
-	git add README.md train.csv
+	git add README.md
 	git diff --cached --quiet || git commit -F tmp/commit-msg
+
+upload-hf: train.csv
+	huggingface-cli upload --repo-type dataset $(HF_REPO) train.csv train.csv
 
 clean:
 	rm -rf tmp
 
-.PHONY: all clean inject-stats stats bot-commit
+.PHONY: all clean inject-stats stats bot-commit upload-hf
