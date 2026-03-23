@@ -75,6 +75,7 @@ bot-commit: tmp/commit-msg
 
 upload-hf: train.csv
 	hf upload $(HF_REPO) train.csv train.csv --repo-type dataset
+	hf upload $(HF_REPO) README.md README.md --repo-type dataset
 
 clean:
 	rm -rf tmp
