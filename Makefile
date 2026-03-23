@@ -1,9 +1,10 @@
-REPO := monkeytypegame/monkeytype
-RAW  := https://raw.githubusercontent.com/$(REPO)/master
-API  := https://api.github.com/repos/$(REPO)/git/trees/master?recursive=1
+REPO     := monkeytypegame/monkeytype
+RAW      := https://raw.githubusercontent.com/$(REPO)/master
+REPO_API := https://api.github.com/repos/$(REPO)
+GH_TREE  := $(REPO_API)/git/trees/master?recursive=1
+GH_LOG   := $(REPO_API)/commits?path=frontend/static/languages&per_page=1
 
-HF_REPO := much1na/words-monkeytype
-HF_URL  := https://huggingface.co/datasets/$(HF_REPO)
+HF_REPO  := much1na/words-monkeytype
 
 all: train.csv
 
@@ -11,7 +12,7 @@ tmp:
 	mkdir -p tmp
 
 tmp/files.json: tmp
-	wget -q "$(API)" -O tmp/files.json
+	wget -q "$(GH_TREE)" -O tmp/files.json
 
 tmp/languages.txt: tmp/files.json
 	jq -r '.tree[].path' tmp/files.json | grep 'frontend/static/languages/' > tmp/languages.txt
@@ -49,7 +50,7 @@ stats: tmp/data
 inject-stats: stats
 
 tmp/languages-commit.json: tmp
-	curl -sf "https://api.github.com/repos/$(REPO)/commits?path=frontend/static/languages&per_page=1" > tmp/languages-commit.json
+	curl -sf "$(GH_LOG)" > tmp/languages-commit.json
 
 tmp/upstream-sha: tmp/languages-commit.json
 	jq -r '.[0].sha' tmp/languages-commit.json > tmp/upstream-sha
@@ -58,7 +59,7 @@ tmp/upstream-sha-short: tmp/upstream-sha
 	cut -c1-7 tmp/upstream-sha > tmp/upstream-sha-short
 
 tmp/upstream-commit.json: tmp/upstream-sha
-	curl -sf "https://api.github.com/repos/$(REPO)/commits/$$(cat tmp/upstream-sha)" > tmp/upstream-commit.json
+	curl -sf "$(REPO_API)/commits/$$(cat tmp/upstream-sha)" > tmp/upstream-commit.json
 
 tmp/upstream-msg: tmp/upstream-commit.json
 	jq -r '.commit.message | split("\n")[0]' tmp/upstream-commit.json > tmp/upstream-msg
@@ -73,7 +74,7 @@ bot-commit: tmp/commit-msg
 	git diff --cached --quiet || git commit -F tmp/commit-msg
 
 upload-hf: train.csv
-	huggingface-cli upload --repo-type dataset $(HF_REPO) train.csv train.csv
+	hf upload $(HF_REPO) train.csv train.csv --repo-type dataset
 
 clean:
 	rm -rf tmp
