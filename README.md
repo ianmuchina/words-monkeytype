@@ -6,7 +6,10 @@ language:
 
 # monkeytype-words
 
-words extracted from [github.com/monkeytypegame/monkeytype](https://github.com/monkeytypegame/monkeytype/tree/master/frontend/static/languages)
+Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/monkeytype/tree/master/frontend/static/languages)
+
+- code (github): [ianmuchina/words-monkeytype](https://github.com/ianmuchina/words-monkeytype)
+- data (huggingface): [much1na/words-monkeytype](https://huggingface.co/datasets/much1na/words-monkeytype)
 
 <!-- stats:start -->
 ## stats
