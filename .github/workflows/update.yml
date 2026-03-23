@@ -1,0 +1,32 @@
+name: update stats
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: lts
+
+      - name: Install deps
+        run: |
+          sudo apt-get install -y wget2 jq
+          pip install duckdb-cli
+
+      - name: run
+        run: make train.csv
+
+      - name: stats
+        run: make inject-stats
+
+      - name: commit
+        run: make bot-commit && git push
