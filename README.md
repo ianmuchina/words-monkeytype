@@ -1,3 +1,9 @@
+---
+license: gpl-3.0
+language:
+  - multilingual
+---
+
 # monkeytype-words
 
 words extracted from [github.com/monkeytypegame/monkeytype](https://github.com/monkeytypegame/monkeytype/tree/master/frontend/static/languages)
