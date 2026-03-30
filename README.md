@@ -417,6 +417,7 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | shona                        |        200 |
 | sinhala                      |        200 |
 | urdu                         |        200 |
+| urdu_roman                   |        200 |
 | welsh                        |        200 |
 | yiddish                      |        200 |
 | arabic                       |        199 |
