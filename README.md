@@ -28,7 +28,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | english_medical             |        580 |
 | english_doubleletter        |        202 |
 | wordle                      |        201 |
-| english                     |        200 |
 | english_old                 |        200 |
 | english_shakespearean       |        193 |
 | english_contractions        |        183 |
@@ -39,7 +38,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | --------------------- | ---------: |
 | code_abap             |        200 |
 | code_abap_1k          |       1111 |
-| code_arduino          |        104 |
 | code_assembly         |         81 |
 | code_bash             |        276 |
 | code_brainfck         |        194 |
@@ -66,7 +64,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | code_javascript       |        126 |
 | code_javascript_1k    |       1001 |
 | code_javascript_react |        202 |
-| code_jule             |         59 |
 | code_julia            |        103 |
 | code_kotlin           |         85 |
 | code_latex            |        200 |
@@ -81,13 +78,11 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | code_opencl           |        221 |
 | code_pascal           |        151 |
 | code_perl             |        234 |
-| code_php              |        296 |
 | code_powershell       |        106 |
 | code_python           |        174 |
 | code_python_1k        |       1096 |
 | code_python_2k        |       2060 |
 | code_python_5k        |       5235 |
-| code_r                |         21 |
 | code_r_2k             |       2270 |
 | code_rockstar         |        103 |
 | code_ruby             |        118 |
@@ -99,10 +94,8 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | code_typescript       |        198 |
 | code_typst            |         43 |
 | code_v                |         64 |
-| code_vim              |        167 |
 | code_vimscript        |         85 |
 | code_visual_basic     |        180 |
-| code_yoptascript      |        239 |
 | code_zig              |        146 |
 
 ### other
@@ -180,13 +173,10 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | esperanto_x_sistemo_10k      |       9993 |
 | spanish_10k                  |       9992 |
 | chinese_traditional_10k      |       9974 |
-| esperanto_h_sistemo_10k      |       9969 |
 | slovak_10k                   |       9944 |
 | norwegian_nynorsk_10k        |       9939 |
 | greek_10k                    |       9936 |
-| finnish_10k                  |       9906 |
 | greeklish_10k                |       9808 |
-| bangla_10k                   |       9734 |
 | czech_10k                    |       9629 |
 | danish_10k                   |       9624 |
 | arabic_10k                   |       9281 |
@@ -247,7 +237,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | pokemon_1k                   |       1025 |
 | slovenian_1k                 |       1023 |
 | indonesian_1k                |       1020 |
-| bulgarian_1k                 |       1010 |
 | bulgarian_latin_1k           |       1007 |
 | gujarati_1k                  |       1004 |
 | amharic_1k                   |       1001 |
@@ -288,7 +277,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | ukrainian_latynka_1k         |       1000 |
 | vietnamese_1k                |       1000 |
 | welsh_1k                     |       1000 |
-| esperanto_h_sistemo_1k       |        999 |
 | esperanto_x_sistemo_1k       |        999 |
 | hindi_1k                     |        999 |
 | spanish_1k                   |        999 |
@@ -307,7 +295,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | malagasy_1k                  |        975 |
 | maori_1k                     |        975 |
 | thai                         |        972 |
-| danish_1k                    |        954 |
 | tamil_1k                     |        951 |
 | urdu_1k                      |        934 |
 | latvian_1k                   |        930 |
