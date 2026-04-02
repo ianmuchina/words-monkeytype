@@ -38,7 +38,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | name                  | word_count |
 | --------------------- | ---------: |
 | code_abap             |        200 |
-| code_abap_1k          |       1111 |
 | code_arduino          |        104 |
 | code_assembly         |         81 |
 | code_bash             |        276 |
@@ -49,7 +48,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | code_cobol            |        105 |
 | code_common_lisp      |        978 |
 | code_csharp           |        130 |
-| code_css              |         72 |
 | code_cuda             |        237 |
 | code_dart             |         73 |
 | code_elixir           |        554 |
@@ -169,7 +167,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | romanian_10k                 |      10000 |
 | serbian_10k                  |      10000 |
 | serbian_latin_10k            |      10000 |
-| tatar_crimean_10k            |      10000 |
 | tatar_crimean_cyrillic_10k   |      10000 |
 | thai_10k                     |      10000 |
 | dutch_10k                    |       9998 |
@@ -192,7 +189,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | arabic_10k                   |       9281 |
 | mongolian_10k                |       9219 |
 | tatar_9k                     |       9034 |
-| afrikaans_10k                |       8164 |
 | italian_7k                   |       7154 |
 | portuguese_5k                |       5665 |
 | belarusian_5k                |       5044 |
@@ -211,7 +207,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | polish_5k                    |       5000 |
 | romanian_5k                  |       5000 |
 | tatar_crimean_5k             |       5000 |
-| tatar_crimean_cyrillic_5k    |       5000 |
 | thai_5k                      |       5000 |
 | vietnamese_5k                |       5000 |
 | chinese_traditional_5k       |       4991 |
@@ -286,14 +281,12 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | thai_1k                      |       1000 |
 | ukrainian_1k                 |       1000 |
 | ukrainian_latynka_1k         |       1000 |
-| vietnamese_1k                |       1000 |
 | welsh_1k                     |       1000 |
 | esperanto_h_sistemo_1k       |        999 |
 | esperanto_x_sistemo_1k       |        999 |
 | hindi_1k                     |        999 |
 | spanish_1k                   |        999 |
 | belarusian_1k                |        997 |
-| belarusian_lacinka_1k        |        997 |
 | russian_1k                   |        996 |
 | swedish_1k                   |        994 |
 | greek_1k                     |        993 |
@@ -314,7 +307,6 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 | maltese_1k                   |        927 |
 | frisian_1k                   |        909 |
 | macedonian_1k                |        901 |
-| telugu_1k                    |        901 |
 | czech_1k                     |        899 |
 | albanian_1k                  |        896 |
 | russian_contractions_1k      |        880 |
