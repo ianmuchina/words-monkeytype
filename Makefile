@@ -5,6 +5,7 @@ UPSTREAM_REF ?= master
 RAW      := https://raw.githubusercontent.com/$(REPO)/$(UPSTREAM_REF)
 REPO_API := https://api.github.com/repos/$(REPO)
 GH_TREE  := $(REPO_API)/git/trees/$(UPSTREAM_REF)?recursive=1
+GH_LOG   := $(REPO_API)/commits/$(UPSTREAM_REF)
 
 HF_REPO  := much1na/words-monkeytype
 
@@ -61,7 +62,7 @@ tmp/languages-commit.json: tmp
 	curl -sf "$(GH_LOG)" > tmp/languages-commit.json
 
 tmp/upstream-sha: tmp/languages-commit.json
-	jq -r '.[0].sha' tmp/languages-commit.json > tmp/upstream-sha
+	jq -r '.sha' tmp/languages-commit.json > tmp/upstream-sha
 
 tmp/upstream-sha-short: tmp/upstream-sha
 	cut -c1-7 tmp/upstream-sha > tmp/upstream-sha-short
