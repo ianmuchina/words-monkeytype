@@ -38,11 +38,12 @@ container image pinned by digest (or vendor those tools).
 
 | name                        | word_count |
 | --------------------------- | ---------: |
-| english_450k                |     451435 |
+| english_450k                |     450029 |
 | english_25k                 |      24141 |
 | english_10k                 |       9944 |
 | english_5k                  |       5000 |
 | english_commonly_misspelled |       1729 |
+| english_legal               |       1102 |
 | english_1k                  |       1000 |
 | wordle_1k                   |       1000 |
 | english_medical             |        580 |
@@ -57,6 +58,7 @@ container image pinned by digest (or vendor those tools).
 
 | name                  | word_count |
 | --------------------- | ---------: |
+| code_6502_assembly    |         56 |
 | code_abap             |        200 |
 | code_abap_1k          |       1111 |
 | code_arduino          |        104 |
@@ -119,6 +121,7 @@ container image pinned by digest (or vendor those tools).
 | code_typescript       |        198 |
 | code_typst            |         43 |
 | code_v                |         64 |
+| code_vhdl             |        145 |
 | code_vim              |        167 |
 | code_vimscript        |         85 |
 | code_visual_basic     |        180 |
@@ -129,7 +132,7 @@ container image pinned by digest (or vendor those tools).
 
 | name                         | word_count |
 | ---------------------------- | ---------: |
-| spanish_650k                 |     646584 |
+| spanish_650k                 |     646579 |
 | french_600k                  |     633941 |
 | norwegian_bokmal_600k        |     614970 |
 | portuguese_550k              |     558207 |
@@ -137,9 +140,9 @@ container image pinned by digest (or vendor those tools).
 | russian_375k                 |     376092 |
 | portuguese_320k              |     318601 |
 | italian_280k                 |     279833 |
-| german_250k                  |     239243 |
+| german_250k                  |     239230 |
 | romanian_200k                |     200000 |
-| polish_200k                  |     199979 |
+| polish_200k                  |     199974 |
 | norwegian_bokmal_150k        |     142938 |
 | belarusian_100k              |     106381 |
 | norwegian_nynorsk_100k       |     104745 |
@@ -156,7 +159,7 @@ container image pinned by digest (or vendor those tools).
 | ukrainian_50k                |      49991 |
 | ukrainian_latynka_50k        |      49991 |
 | chinese_traditional_50k      |      49925 |
-| polish_40k                   |      40000 |
+| polish_40k                   |      39999 |
 | esperanto_36k                |      36342 |
 | esperanto_x_sistemo_36k      |      36296 |
 | esperanto_h_sistemo_36k      |      36131 |
@@ -169,14 +172,15 @@ container image pinned by digest (or vendor those tools).
 | greeklish_25k                |      24273 |
 | belarusian_25k               |      24133 |
 | persian_20k                  |      21715 |
-| polish_20k                   |      20000 |
+| polish_20k                   |      19999 |
 | thai_20k                     |      18737 |
 | tatar_crimean_15k            |      15082 |
 | tatar_crimean_cyrillic_15k   |      15082 |
 | indonesian_10k               |      13769 |
 | belarusian_10k               |      10725 |
-| french_10k                   |      10253 |
+| french_10k                   |      10251 |
 | typing_of_the_dead           |      10098 |
+| bemba_10k                    |      10001 |
 | chinese_simplified_10k       |      10000 |
 | esperanto_10k                |      10000 |
 | estonian_10k                 |      10000 |
@@ -185,20 +189,20 @@ container image pinned by digest (or vendor those tools).
 | macedonian_10k               |      10000 |
 | norwegian_bokmal_10k         |      10000 |
 | occitan_10k                  |      10000 |
-| polish_10k                   |      10000 |
 | romanian_10k                 |      10000 |
 | serbian_10k                  |      10000 |
 | serbian_latin_10k            |      10000 |
 | tatar_crimean_10k            |      10000 |
 | tatar_crimean_cyrillic_10k   |      10000 |
 | thai_10k                     |      10000 |
+| polish_10k                   |       9999 |
 | dutch_10k                    |       9998 |
 | ukrainian_10k                |       9998 |
 | ukrainian_latynka_10k        |       9998 |
 | russian_10k                  |       9996 |
 | german_10k                   |       9994 |
 | esperanto_x_sistemo_10k      |       9993 |
-| spanish_10k                  |       9992 |
+| spanish_10k                  |       9990 |
 | chinese_traditional_10k      |       9974 |
 | esperanto_h_sistemo_10k      |       9969 |
 | slovak_10k                   |       9944 |
@@ -258,6 +262,8 @@ container image pinned by digest (or vendor those tools).
 | french_1k                    |       1394 |
 | lojban_gismu                 |       1392 |
 | pinyin_10k                   |       1293 |
+| bulgarian_1k                 |       1172 |
+| bulgarian_latin_1k           |       1169 |
 | italian_1k                   |       1159 |
 | arabic_egypt_1k              |       1141 |
 | croatian_1k                  |       1108 |
@@ -267,10 +273,9 @@ container image pinned by digest (or vendor those tools).
 | pokemon_1k                   |       1025 |
 | slovenian_1k                 |       1023 |
 | indonesian_1k                |       1020 |
-| bulgarian_1k                 |       1010 |
-| bulgarian_latin_1k           |       1007 |
 | gujarati_1k                  |       1004 |
 | amharic_1k                   |       1001 |
+| bemba_1k                     |       1001 |
 | klingon_1k                   |       1001 |
 | slovak_1k                    |       1001 |
 | tatar_1k                     |       1001 |
@@ -311,7 +316,7 @@ container image pinned by digest (or vendor those tools).
 | esperanto_h_sistemo_1k       |        999 |
 | esperanto_x_sistemo_1k       |        999 |
 | hindi_1k                     |        999 |
-| spanish_1k                   |        999 |
+| spanish_1k                   |        998 |
 | belarusian_1k                |        997 |
 | belarusian_lacinka_1k        |        997 |
 | russian_1k                   |        996 |
@@ -348,15 +353,18 @@ container image pinned by digest (or vendor those tools).
 | lojban_cmavo                 |        674 |
 | pinyin_1k                    |        612 |
 | japanese_hiragana            |        554 |
+| lao                          |        537 |
+| sindhi                       |        514 |
 | korean                       |        470 |
 | tamil_old                    |        460 |
 | league_of_legends            |        442 |
 | nepali_romanized             |        430 |
+| kokanu                       |        381 |
+| likanu                       |        381 |
 | kinyarwanda                  |        368 |
 | tamil                        |        366 |
 | latin                        |        362 |
 | japanese_katakana            |        343 |
-| oromo                        |        337 |
 | khmer                        |        331 |
 | vietnamese                   |        319 |
 | indonesian                   |        310 |
@@ -396,6 +404,7 @@ container image pinned by digest (or vendor those tools).
 | kurdish_central              |        204 |
 | swiss_german                 |        204 |
 | kazakh                       |        202 |
+| bemba                        |        201 |
 | klingon                      |        201 |
 | marathi                      |        201 |
 | portuguese                   |        201 |
@@ -432,6 +441,7 @@ container image pinned by digest (or vendor those tools).
 | nepali                       |        200 |
 | norwegian_bokmal             |        200 |
 | occitan                      |        200 |
+| oromo                        |        200 |
 | russian                      |        200 |
 | russian_contractions         |        200 |
 | shona                        |        200 |
@@ -446,6 +456,7 @@ container image pinned by digest (or vendor those tools).
 | czech                        |        199 |
 | dutch                        |        199 |
 | euskera                      |        199 |
+| greek_koine                  |        199 |
 | italian                      |        199 |
 | lithuanian                   |        199 |
 | ukrainian                    |        199 |
