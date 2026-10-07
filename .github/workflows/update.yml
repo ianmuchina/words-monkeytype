@@ -6,9 +6,20 @@ on:
   workflow_dispatch:
   push:
 
+concurrency:
+  group: update-stats
+  cancel-in-progress: false
+
 jobs:
   update-stats:
-    runs-on: ubuntu-latest
+    # Keep the runner family fixed; the generated files themselves are also
+    # controlled by the pinned upstream ref and explicit locale below.
+    runs-on: ubuntu-24.04
+    env:
+      LC_ALL: C
+      LANG: C
+      TZ: UTC
+      SOURCE_DATE_EPOCH: 0
     permissions:
       contents: write
 
@@ -16,19 +27,55 @@ jobs:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v2
         with:
-          deno-version: lts
+          deno-version: 2.9.5
 
       - name: install dependencies
         run: |
-          sudo apt-get install -y wget2 jq
-          pip install duckdb-cli huggingface_hub
+          set -euo pipefail
+          sudo apt-get install -y wget2 jq unzip
+          # DuckDB's CLI package is not taken from the mutable Python index.
+          duckdb_version=1.4.1
+          curl --fail --silent --show-error --location \
+            "https://github.com/duckdb/duckdb/releases/download/v${duckdb_version}/duckdb_cli-linux-amd64.zip" \
+            -o /tmp/duckdb.zip
+          unzip -p /tmp/duckdb.zip duckdb > /tmp/duckdb
+          install -m 0755 /tmp/duckdb /usr/local/bin/duckdb
+
+          # Force replacement so a preinstalled runner package cannot win.
+          python -m pip install --no-cache-dir --force-reinstall \
+            --upgrade-strategy only-if-needed \
+            'huggingface_hub==0.36.0'
+
+      - name: pin upstream revision
+        run: |
+          set -euo pipefail
+          upstream_sha=$(curl --fail --silent --show-error \
+            'https://api.github.com/repos/monkeytypegame/monkeytype/commits/master' |
+            jq -r '.sha')
+          test -n "$upstream_sha" -a "$upstream_sha" != "null"
+          echo "UPSTREAM_REF=$upstream_sha" >> "$GITHUB_ENV"
 
       - name: run
         run: make train.csv
       - name: stats
         run: make inject-stats
       - name: upload-hf
-        run: make upload-hf
+        if: github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || github.event_name == 'push'
+        run: |
+          set -euo pipefail
+          if ! hf download much1na/words-monkeytype train.csv README.md \
+              --repo-type dataset --local-dir tmp/hf-remote; then
+            make upload-hf
+            exit 0
+          fi
+          changed=0
+          cmp -s train.csv tmp/hf-remote/train.csv || changed=1
+          cmp -s README.md tmp/hf-remote/README.md || changed=1
+          if [ "$changed" -eq 1 ]; then
+            make upload-hf
+          else
+            echo 'HF dataset is byte-for-byte unchanged; skipping upload.'
+          fi
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
 

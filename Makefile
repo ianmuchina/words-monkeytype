@@ -1,8 +1,10 @@
 REPO     := monkeytypegame/monkeytype
-RAW      := https://raw.githubusercontent.com/$(REPO)/master
+# A build is reproducible when UPSTREAM_REF is a commit SHA.  `master` is a
+# convenient default for local updates, but is intentionally not used by CI.
+UPSTREAM_REF ?= master
+RAW      := https://raw.githubusercontent.com/$(REPO)/$(UPSTREAM_REF)
 REPO_API := https://api.github.com/repos/$(REPO)
-GH_TREE  := $(REPO_API)/git/trees/master?recursive=1
-GH_LOG   := $(REPO_API)/commits?path=frontend/static/languages&per_page=1
+GH_TREE  := $(REPO_API)/git/trees/$(UPSTREAM_REF)?recursive=1
 
 HF_REPO  := much1na/words-monkeytype
 
@@ -15,21 +17,23 @@ tmp/files.json: tmp
 	wget -q "$(GH_TREE)" -O tmp/files.json
 
 tmp/languages.txt: tmp/files.json
-	jq -r '.tree[].path' tmp/files.json | grep 'frontend/static/languages/' > tmp/languages.txt
+	jq -r '.tree[] | select(.type == "blob") | .path' tmp/files.json | grep '^frontend/static/languages/.*\.json$$' | LC_ALL=C sort > tmp/languages.txt
 
 tmp/urls.txt: tmp/languages.txt
 	cat tmp/languages.txt | xargs -I{} echo "$(RAW)/{}" > tmp/urls.txt
 
 tmp/data: tmp/urls.txt
+	rm -rf tmp/data
 	mkdir -p tmp/data
-	wget2 -nc -i tmp/urls.txt -P tmp/data
+	wget2 --no-clobber --input-file=tmp/urls.txt --directory-prefix=tmp/data
 	touch tmp/data
 
 train.csv: tmp/data
-	duckdb -c "COPY (SELECT unnest(words) as word, name as wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv'"
+	LC_ALL=C duckdb -c "PRAGMA threads=1; COPY (SELECT unnest(words) AS word, name AS wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv.tmp' (HEADER, DELIMITER ',', NEWLINE '\\n');"
+	mv train.csv.tmp train.csv
 
 languages.json: tmp/data
-	jq -s '[.[] | del(.words)]' tmp/data/*.json > languages.json
+	LC_ALL=C jq -s '[.[] | del(.words)]' $$(LC_ALL=C find tmp/data -maxdepth 1 -type f -name '*.json' -print | LC_ALL=C sort) > languages.json
 
 stats: tmp/data
 	printf '## stats\n\n' > stats.md

@@ -11,6 +11,26 @@ Auto updated from [monkeytypegame/monkeytype](https://github.com/monkeytypegame/
 - code (github): [ianmuchina/words-monkeytype](https://github.com/ianmuchina/words-monkeytype)
 - data (huggingface): [much1na/words-monkeytype](https://huggingface.co/datasets/much1na/words-monkeytype)
 
+## Reproducible builds
+
+The generated files are a snapshot of Monkeytype's language files. For a
+repeatable build, pin the source revision:
+
+```sh
+make clean
+make UPSTREAM_REF=<monkeytype-commit-sha> train.csv
+```
+
+The scheduled workflow resolves `master` to one commit at the start of each
+run and passes that commit to Make, so all files in a run come from the same
+upstream snapshot. To reproduce a workflow result exactly, copy the SHA from
+that run and use it as `UPSTREAM_REF`; do not use `master`.
+
+The workflow also fixes the runner family, Deno version, locale, timezone, and
+build timestamp. The remaining external tools are installed by the runner's
+package indexes, so a truly archival build should run the workflow in a
+container image pinned by digest (or vendor those tools).
+
 <!-- stats:start -->
 ## stats
 
