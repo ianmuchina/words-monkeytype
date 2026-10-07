@@ -33,7 +33,7 @@ tmp/data: tmp/urls.txt
 	touch tmp/data
 
 train.csv: tmp/data
-	LC_ALL=C duckdb -c "PRAGMA threads=1; COPY (SELECT unnest(words) AS word, name AS wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv.tmp' (HEADER, DELIMITER ',', NEWLINE '\\n');"
+	LC_ALL=C duckdb -c "PRAGMA threads=1; COPY (SELECT unnest(words) AS word, name AS wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv.tmp' (HEADER, DELIMITER ',');"
 	mv train.csv.tmp train.csv
 
 languages.json: tmp/data
