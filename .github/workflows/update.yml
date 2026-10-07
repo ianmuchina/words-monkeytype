@@ -32,7 +32,6 @@ jobs:
       - name: install dependencies
         run: |
           set -euo pipefail
-          sudo apt-get install -y wget2 jq unzip
           # DuckDB's CLI package is not taken from the mutable Python index.
           duckdb_version=1.4.1
           curl --fail --silent --show-error --location \

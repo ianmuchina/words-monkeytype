@@ -25,7 +25,11 @@ tmp/urls.txt: tmp/languages.txt
 tmp/data: tmp/urls.txt
 	rm -rf tmp/data
 	mkdir -p tmp/data
-	wget2 --no-clobber --input-file=tmp/urls.txt --directory-prefix=tmp/data
+	while IFS= read -r url; do \
+		file=$${url##*/}; \
+		curl --fail --silent --show-error --location --retry 3 \
+			--output "tmp/data/$$file" "$$url"; \
+	done < tmp/urls.txt
 	touch tmp/data
 
 train.csv: tmp/data
