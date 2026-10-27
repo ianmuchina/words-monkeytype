@@ -116,7 +116,7 @@ container image pinned by digest (or vendor those tools).
 | code_rust             |        192 |
 | code_scala            |         96 |
 | code_sql              |        174 |
-| code_swift            |         69 |
+| code_swift            |        207 |
 | code_systemverilog    |        222 |
 | code_typescript       |        198 |
 | code_typst            |         43 |
