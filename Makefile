@@ -9,6 +9,14 @@ GH_LOG   := $(REPO_API)/commits/$(UPSTREAM_REF)
 
 HF_REPO  := much1na/words-monkeytype
 
+# Upstream has a few entries that are whole word lists joined by commas
+# (english_legal: one 27k-char "management, manager, ..." entry; persian_20k:
+# one entry joined by "، "). Split entries longer than 64 chars that contain
+# ", " or "، " on the comma and trim each piece; keep every other entry as is.
+# Real long entries (Thai titles) have no commas; real comma entries
+# (code_*, typing_of_the_dead) are at most 40 chars.
+WORDS := flatten(list_transform(words, w -> CASE WHEN length(w) > 64 AND (w LIKE '%, %' OR w LIKE '%، %') THEN list_filter(list_transform(string_split_regex(w, '[,،]'), p -> trim(p)), p -> p <> '') ELSE [w] END))
+
 all: train.csv
 
 tmp:
@@ -34,7 +42,7 @@ tmp/data: tmp/urls.txt
 	touch tmp/data
 
 train.csv: tmp/data
-	LC_ALL=C duckdb -c "PRAGMA threads=1; COPY (SELECT unnest(words) AS word, name AS wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv.tmp' (HEADER, DELIMITER ',');"
+	LC_ALL=C duckdb -c "PRAGMA threads=1; COPY (SELECT unnest($(WORDS)) AS word, name AS wordlist FROM read_json('tmp/data/*.json') ORDER BY name, wordlist, word) TO 'train.csv.tmp' (HEADER, DELIMITER ',');"
 	mv train.csv.tmp train.csv
 
 languages.json: tmp/data
@@ -43,11 +51,11 @@ languages.json: tmp/data
 stats: tmp/data
 	printf '## stats\n\n' > stats.md
 	printf '### english\n' >> stats.md
-	duckdb -markdown -c "SELECT name, len(words) as word_count FROM read_json('tmp/data/*.json') WHERE name LIKE 'english%' OR name LIKE 'wordle%' ORDER BY word_count DESC, name" >> stats.md
+	duckdb -markdown -c "SELECT name, len($(WORDS)) as word_count FROM read_json('tmp/data/*.json') WHERE name LIKE 'english%' OR name LIKE 'wordle%' ORDER BY word_count DESC, name" >> stats.md
 	printf '\n### code\n' >> stats.md
-	duckdb -markdown -c "SELECT name, len(words) as word_count FROM read_json('tmp/data/*.json') WHERE name LIKE 'code_%' ORDER BY name" >> stats.md
+	duckdb -markdown -c "SELECT name, len($(WORDS)) as word_count FROM read_json('tmp/data/*.json') WHERE name LIKE 'code_%' ORDER BY name" >> stats.md
 	printf '\n### other\n' >> stats.md
-	duckdb -markdown -c "SELECT name, len(words) as word_count FROM read_json('tmp/data/*.json') WHERE name NOT LIKE 'code_%' AND name NOT LIKE 'english%' AND name NOT LIKE 'wordle%' ORDER BY word_count DESC, name" >> stats.md
+	duckdb -markdown -c "SELECT name, len($(WORDS)) as word_count FROM read_json('tmp/data/*.json') WHERE name NOT LIKE 'code_%' AND name NOT LIKE 'english%' AND name NOT LIKE 'wordle%' ORDER BY word_count DESC, name" >> stats.md
 	printf '\n---\n' >> stats.md
 	deno fmt stats.md
 	sed -n '1,/<!-- stats:start -->/p' README.md > tmp/readme.tmp
