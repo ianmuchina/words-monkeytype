@@ -42,8 +42,8 @@ container image pinned by digest (or vendor those tools).
 | english_25k                 |      24141 |
 | english_10k                 |       9944 |
 | english_5k                  |       5000 |
+| english_legal               |       4053 |
 | english_commonly_misspelled |       1729 |
-| english_legal               |       1102 |
 | english_1k                  |       1000 |
 | wordle_1k                   |       1000 |
 | english_medical             |        580 |
@@ -171,7 +171,7 @@ container image pinned by digest (or vendor those tools).
 | greek_25k                    |      24836 |
 | greeklish_25k                |      24273 |
 | belarusian_25k               |      24133 |
-| persian_20k                  |      21715 |
+| persian_20k                  |      21728 |
 | polish_20k                   |      19999 |
 | thai_20k                     |      18737 |
 | tatar_crimean_15k            |      15082 |
