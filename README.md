@@ -38,7 +38,7 @@ container image pinned by digest (or vendor those tools).
 
 | name                        | word_count |
 | --------------------------- | ---------: |
-| english_450k                |     450029 |
+| english_450k                |     450012 |
 | english_25k                 |      24141 |
 | english_10k                 |       9944 |
 | english_5k                  |       5000 |
